@@ -23,7 +23,7 @@
 //
 //};
 
-void readWarAndPeace(const std::string& filename)
+void readLesMiserables(const std::string& filename)
 {
 	std::ifstream fin{ filename };
 
@@ -33,13 +33,31 @@ void readWarAndPeace(const std::string& filename)
 		return; 
 	}
 
-	std::string currentLine; 
-	while (getline(fin, currentLine))
+
+	//can we use a MAP to determine the most-frequently occurring word in Les Miserables 
+	//and is that word Jean Valjean? 
+
+	std::map<std::string, int> wordsMappedToTheirFrequencies; //1.23 MHz
+
+	std::string currentWord; 
+	while (getline(fin, currentWord, ' '))
 	{
-		std::cout << currentLine << "\n";
+		//std::cout << currentWord << "\n";
+		//wordsMappedToTheirFrequencies[currentWord] = 0;
+		 wordsMappedToTheirFrequencies[currentWord]++;
+
 	}
 
 	fin.close(); 
+
+
+	//print the contents of the map (which will be words and the number of times they 
+	//appear in Les Miserables
+
+	for (const auto& currentPair : wordsMappedToTheirFrequencies)
+	{
+		std::cout << currentPair.first << " appears this many times: " << currentPair.second << "\n";
+	}
 }
 
 void demoDoublyLinkedList()
@@ -114,10 +132,11 @@ void printQueue(std::queue<std::string> theQueue)
 		std::cout << theQueue.front() << "\n";
 		//theQueue.peek(); //peek not supported in C++ implementation of queue data structure 
 		theQueue.pop(); //removes the front element 
-		//dequeue 
-		//theQueue.push(); //this is sometimes called "enqueue" cognate
+		//pop is also called dequeue (dee-cue) 
+		//theQueue.push(); //this is sometimes called "enqueue" 
 	}
 }
+
 void demoQueue()
 {
 	std::queue<std::string> customersInLane1;
@@ -128,20 +147,27 @@ void demoQueue()
 
 	customersInLane1.pop(); //this SHOULD remove bob, leaving the other 3
 
-	//for(const std::string& currentName : customersInLane1)
+	//let's bear witness to a difference betwixt queue and deque (double-ended queue)
+	//std::deque<std::string> someDoubleEndedGroceryLane; 
+	//someDoubleEndedGroceryLane.
+
+	//customersInLane1.remov
+	//for(const std::string& currentName : customersInLane1) //won't work!
 	printQueue(customersInLane1); 
+
+
 
 }
 
 int main()
 {
-	//std::string warAndPeaceFilePath = "C:/Users/Work/Downloads/warAndPeace.txt";
-	//readWarAndPeace(warAndPeaceFilePath); 
-
+	std::string lesMiserablesFilePath = "C:/Users/snorm/Downloads/LesMiserables.txt";
+	readLesMiserables(lesMiserablesFilePath); 
+	
 	//demoDoublyLinkedList(); 
 
 	//demoMap(); 
-	demoQueue(); 
+	//demoQueue(); 
 
 
 
