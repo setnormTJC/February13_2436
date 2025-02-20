@@ -37,7 +37,7 @@ void readLesMiserables(const std::string& filename)
 	//can we use a MAP to determine the most-frequently occurring word in Les Miserables 
 	//and is that word Jean Valjean? 
 
-	std::map<std::string, int> wordsMappedToTheirFrequencies; //1.23 MHz
+	std::map<std::string, int> wordsMappedToTheirFrequencies; //NOT 1.23 MHz
 
 	std::string currentWord; 
 	while (getline(fin, currentWord, ' '))
@@ -166,6 +166,9 @@ int main()
 	
 	//demoDoublyLinkedList(); 
 
+
+	//std::vector<int> nums; 
+	
 	//demoMap(); 
 	//demoQueue(); 
 
